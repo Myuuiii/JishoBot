@@ -7,7 +7,7 @@ A bot that provides Japanese definitions and translations to anyone who needs th
 ## Commands
 
 ### `j! [term]` 
-Try to retrieve the definition for the given term. This can be a word or a single character. When a phrase is supplied it will try to use the first word in the prase.
+Try to retrieve the definition for the given term. This can be a word or a single character. When a phrase is supplied it will try to use the first word in the phrase.
 
 ### `j!about`
 Shows some information about the project.
