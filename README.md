@@ -1,20 +1,16 @@
-<div align="center">
+
+
 
 # JishoBot
 A bot that provides Japanese definitions and translations to anyone who needs them.
 
-
 ## Commands
 
-### `j! [term]` 
-Try to retrieve the definition for the given term. This can be a word or a single character. When a phrase is supplied it will try to use the first word in the phrase.
-
-### `j!about`
-Shows some information about the project.
-
-
-### `j!help`
-Shows a help message listing the commands and how to use them
+| Command | Arguments | Description                                                  |
+| ------- | --------- | ------------------------------------------------------------ |
+| j!      | (term)    | Try to retrieve the definition for the given term. This can be a word or a single character. When a phrase is supplied it will try to use the first word in the phrase |
+| j!about |           | Shows some information about the bot/project                 |
+| j!help  |           | Shows a help message listing the commands and how to use them |
 
 
 ## How to add the bot to my server
@@ -35,5 +31,3 @@ If you like this bot and want to support us please consider leaving a star on th
 If you have any questions about the bot or project feel free to contact `Myuuiii` on Discord at `Myuu#0001`
 
 Thank you for using JishoBot! ❤
-
-</div>
