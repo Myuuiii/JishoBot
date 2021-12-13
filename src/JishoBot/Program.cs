@@ -50,6 +50,9 @@ namespace JishoBot
 				await Commands.AboutCommand.ExecuteAsync(sender, e);
 			else if (e.Message.Content.ToLower().StartsWith("j!help"))
 				await Commands.HelpCommand.ExecuteAsync(sender, e);
+
+			if (e.Message.Channel.Name == "jisho-bot")
+				await Commands.JishoCommand.ExecuteAsync(sender, e);
 		}
 	}
 }
