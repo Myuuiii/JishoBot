@@ -44,15 +44,16 @@ namespace JishoBot
 
 		private static async Task HandleMessage(DiscordClient sender, MessageCreateEventArgs e)
 		{
+			if (e.Message.Author.IsBot) return;
 			if (e.Message.Content.ToLower().StartsWith("j! "))
-				await Commands.JishoCommand.ExecuteAsync(sender, e);
+				await Commands.JishoCommand.ExecuteAsync(sender, e, false);
 			else if (e.Message.Content.ToLower().StartsWith("j!about"))
 				await Commands.AboutCommand.ExecuteAsync(sender, e);
 			else if (e.Message.Content.ToLower().StartsWith("j!help"))
 				await Commands.HelpCommand.ExecuteAsync(sender, e);
 
 			if (e.Message.Channel.Name == "jisho-bot")
-				await Commands.JishoCommand.ExecuteAsync(sender, e);
+				await Commands.JishoCommand.ExecuteAsync(sender, e, true);
 		}
 	}
 }

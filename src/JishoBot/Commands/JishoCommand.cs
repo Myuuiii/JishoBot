@@ -15,9 +15,13 @@ namespace JishoBot.Commands
 {
 	public class JishoCommand
 	{
-		public static async Task ExecuteAsync(DiscordClient sender, MessageCreateEventArgs e)
+		public static async Task ExecuteAsync(DiscordClient sender, MessageCreateEventArgs e, bool fromBotChannel)
 		{
-			string searchTerm = string.Join(' ', e.Message.Content.Split(' ').Skip(1).ToArray());
+			string searchTerm = "";
+			if (fromBotChannel)
+				searchTerm = e.Message.Content;
+			else
+				searchTerm = string.Join(' ', e.Message.Content.Split(' ').Skip(1).ToArray());
 
 			JishoClient jishoClient = new JishoClient();
 			JishoResult result = jishoClient.GetDefinition(searchTerm);
@@ -66,9 +70,14 @@ namespace JishoBot.Commands
 					sb.AppendLine($"***{currentItem++.ToOrdinalWords().Humanize()} definition ***");
 					sb.AppendLine($"**English Definitions**: ");
 
-					foreach (var sense in dataResult.Senses.Take(4))
+					int maxSenses = 4;
+					foreach (var sense in dataResult.Senses)
 					{
-						sb.AppendLine($"- [{sense.PartsOfSpeech[0]}] *{string.Join(", ", sense.EnglishDefinitions)}*");
+						if (sense.PartsOfSpeech.Count > 0)
+							sb.Append($"- [{sense.PartsOfSpeech[0]}]");
+						sb.AppendLine($" *{string.Join(", ", sense.EnglishDefinitions)}*");
+						maxSenses--;
+						if (maxSenses == 0) break;
 					}
 
 					if (!string.IsNullOrWhiteSpace(dataResult.Japanese[0].Reading))
@@ -76,6 +85,14 @@ namespace JishoBot.Commands
 
 					if (!string.IsNullOrWhiteSpace(dataResult.Japanese[0].Word))
 						sb.AppendLine($"**Japanese Word**: {dataResult.Japanese[0].Word}");
+
+					if (dataResult.Jlpt.Count > 0)
+						if (!string.IsNullOrWhiteSpace(dataResult.Jlpt[0]))
+							sb.AppendLine($"**JLPT Level**: {dataResult.Jlpt[0].Replace("jlpt-", "").ToUpper()}");
+
+
+					string isCommonText = dataResult.IsCommon ? "Yes" : "No";
+					sb.AppendLine($"**Is Common**: {isCommonText}");
 
 					sb.AppendLine("");
 
