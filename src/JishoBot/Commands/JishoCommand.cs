@@ -67,8 +67,8 @@ namespace JishoBot.Commands
 				foreach (var dataResult in result.Data.Take(3))
 				{
 					if (String.IsNullOrWhiteSpace(dataResult.Japanese[0].Reading)) continue;
-					sb.AppendLine($"***{currentItem++.ToOrdinalWords().Humanize()} definition ***");
-					sb.AppendLine($"**English Definitions**: ");
+
+					sb.AppendLine($"**{dataResult.Japanese[0].Word}** ({dataResult.Japanese[0].Reading})");
 
 					int maxSenses = 4;
 					foreach (var sense in dataResult.Senses)
@@ -79,12 +79,6 @@ namespace JishoBot.Commands
 						maxSenses--;
 						if (maxSenses == 0) break;
 					}
-
-					if (!string.IsNullOrWhiteSpace(dataResult.Japanese[0].Reading))
-						sb.AppendLine($"**Japanese Reading**: {dataResult.Japanese[0].Reading}");
-
-					if (!string.IsNullOrWhiteSpace(dataResult.Japanese[0].Word))
-						sb.AppendLine($"**Japanese Word**: {dataResult.Japanese[0].Word}");
 
 					if (dataResult.Jlpt.Count > 0)
 						if (!string.IsNullOrWhiteSpace(dataResult.Jlpt[0]))
