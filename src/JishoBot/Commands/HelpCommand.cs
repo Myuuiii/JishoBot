@@ -24,6 +24,9 @@ namespace JishoBot.Commands
 			sb.AppendLine();
 			sb.AppendLine("`j!help`");
 			sb.AppendLine("*Displays this message*");
+			sb.AppendLine();
+			sb.AppendLine();
+			sb.AppendLine("Any message sent in a channel called 'jisho-bot' will be interpereted as a lookup command");
 
 			embedBuilder.Description = sb.ToString();
 			embedBuilder.WithColor(new DiscordColor(0, 255, 0));
