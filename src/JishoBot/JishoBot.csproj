@@ -8,7 +8,7 @@
   <ItemGroup>
     <PackageReference Include="DSharpPlus" Version="4.1.0" />
     <PackageReference Include="Humanizer" Version="2.13.14" />
-    <PackageReference Include="JishoNET" Version="1.2.1" />
+    <PackageReference Include="JishoNET" Version="1.2.2" />
     <PackageReference Include="KanjiNET" Version="1.0.4" />
   </ItemGroup>
 
